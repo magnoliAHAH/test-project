@@ -3,11 +3,10 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Копируем весь frontend в рабочую директорию
-COPY frontend/ ./
-
+COPY package.json package-lock.json* ./
 RUN npm install
 
+COPY . .
 RUN npm run build
 
 # Этап сервера
